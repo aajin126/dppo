@@ -1,0 +1,45 @@
+# Archived experimental adapter. Use ft_lfirl_diffusion_mlp for LFIRL recovery.
+defaults:
+  - ft_ppo_diffusion_mlp
+  - _self_
+
+_target_: agent.finetune.train_firl_diffusion_agent.TrainFIRLDiffusionAgent
+name: ${env_name}_firl_diffusion_mlp
+logdir: ${oc.env:DPPO_LOG_DIR}/furniture-firl/${name}/${now:%Y-%m-%d}_${now:%H-%M-%S}_${seed}
+
+env:
+  n_envs: 4
+
+firl:
+  expert_dataset_path: ${oc.env:DPPO_DATA_DIR}/furniture/one_leg_low/train.npz
+  reward_scope: task
+  reward_checkpoint: null
+  freeze_reward: false
+  max_expert_trajectories: 0
+  save_best: true
+  success_replay:
+    enabled: true
+    capacity: 100
+    batch_size: 128
+    updates: 4
+    coefficient: 0.1
+    checkpoint: null
+  discriminator:
+    hidden_size: 128
+    batch_size: 256
+    learning_rate: 0.0003
+    updates: 128
+  reward:
+    hidden_sizes: [256, 256]
+    clamp_magnitude: 10.0
+    learning_rate: 0.0001
+    weight_decay: 0.001
+    updates: 4
+
+train:
+  n_train_itr: 20
+  n_critic_warmup_itr: 3
+  batch_size: 256
+  save_model_freq: 1
+  use_bc_loss: true
+  bc_loss_coeff: 0.1

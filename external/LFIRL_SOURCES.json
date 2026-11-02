@@ -1,0 +1,20 @@
+{
+  "repository": "https://github.com/NothingThrough/LFIRL",
+  "commit": "bce7509b789f1ac361d37618a85ded256af3d5d4",
+  "unchanged_source_files": {
+    "train_lfirl.py": "ab64e1860c1ce31ca95e8c5ecc7c1974caf1e8566b053dd9dc44c5c240a26169",
+    "models/q_network.py": "aec6d8ab39ae65150239b3704be576d6e7312c194866f16bbc3ed42bf4b9e6f1",
+    "models/v_network.py": "ae600572d50c0a7c83153db6352f801df9720f04b89db29833d4fdf9d8efdd39",
+    "models/r_network.py": "fb78408f34eaf8d9cb661662fa7650c597b0448c0b7618cb3fc64e4727a8003e",
+    "models/diffusion_model.py": "15d7b39863b2b5a289927edb0bbcbd68163dbb0e92a78ed1d3732c5934779f75",
+    "environments/FrankaKitchen-v1.yml": "93cdb333784a4ec755642101b08e324e39d6cd845163755f484ac32218516d8a"
+  },
+  "reuse": "Original Q/V/offset/reward stage functions and original DP score routine; selective definition loading avoids importing unrelated benchmark environments.",
+  "adaptations": [
+    "Native DPPO epsilon model and noise schedule via an 80-dimensional macro-action interface.",
+    "Eight 10-Hz actions and the matching next state form each 0.8-second transition.",
+    "The native DPPO macro discount is shared by LFIRL and online policy fine-tuning.",
+    "Missing terminal flags are explicit: truncate or upstream-style demonstration-end assumption.",
+    "Recovered reward is frozen for downstream DPPO; no maximum-entropy assumption on the downstream optimizer."
+  ]
+}

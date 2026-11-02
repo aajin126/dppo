@@ -1,0 +1,20 @@
+{
+  "imitation": {
+    "path": "external/imitation",
+    "commit": "e5ef18806c449ca47153b494a02471c5e2ae3a14",
+    "license_file": "external/imitation/LICENSE",
+    "unmodified_files": {
+      "src/imitation/algorithms/adversarial/airl.py": "ae6bea88f51474586dc54496157b74ac5b9fad5b9a41df1fc5f104c3cdf4b805",
+      "src/imitation/algorithms/adversarial/common.py": "02ec7705a8be8dd64cece9df48b970b1b389d248f6c6606b17831baeac0f9c8f",
+      "src/imitation/rewards/reward_nets.py": "58716fbb881a25c68d75cba40e7077a62084bbaa9f21b55c1d5733aa5c7c6c6f"
+    }
+  },
+  "nflows": {
+    "path": "external/nflows",
+    "commit": "5d22344436a4a5f4c3b93a3b99322a6bfe374c08",
+    "license_file": "external/nflows/LICENSE",
+    "unmodified_files": {
+      "nflows/nn/nde/made.py": "3a91441c32f3d9e842297475822b54b7895877d79c2218f908f345fc1c06900e"
+    }
+  }
+}

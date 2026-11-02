@@ -1,0 +1,11 @@
+{
+  "repository": "https://github.com/twni2016/f-IRL",
+  "commit": "3cf243ec13a3d49a536db3492da3267300a51233",
+  "license_file": "external/firl/LICENSE",
+  "unchanged_source_files": {
+    "firl/models/reward.py": "a22be9b732b03cfea8c6e9c5c479fc5503e1f86bac7be2b99620cc7fc9cd8cbc",
+    "firl/models/discrim.py": "59774db30a9dce418d8c79ecf9b3ab7865c86f836d2228ad47b53f2115c49951",
+    "firl/divs/f_div_disc.py": "61179ea303e36c5690838c12e7ea8150765e6c55e6890e92f6ff326b07fc53ac"
+  },
+  "adaptation": "Original JS reward-gradient path with IS=False; original maximum-entropy SAC inner solver replaced by native DPPO. No equivalent SAC convergence claim."
+}

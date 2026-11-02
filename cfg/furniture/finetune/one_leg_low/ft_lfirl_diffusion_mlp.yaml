@@ -1,0 +1,29 @@
+defaults:
+  - ft_ppo_diffusion_mlp
+  - _self_
+
+_target_: agent.finetune.train_lfirl_diffusion_agent.TrainLFIRLDiffusionAgent
+name: ${env_name}_lfirl_diffusion_mlp
+logdir: ${oc.env:DPPO_LOG_DIR}/furniture-lfirl/${name}/${now:%Y-%m-%d}_${now:%H-%M-%S}_${seed}
+
+env:
+  n_envs: 4
+
+lfirl:
+  reward_checkpoint: ${oc.env:DPPO_LOG_DIR}/furniture-lfirl/offline_one_leg/reward.pt
+  save_best: true
+  success_replay:
+    enabled: true
+    capacity: 100
+    batch_size: 128
+    updates: 4
+    coefficient: 0.1
+    checkpoint: null
+
+train:
+  n_train_itr: 100
+  n_critic_warmup_itr: 3
+  batch_size: 256
+  save_model_freq: 1
+  use_bc_loss: true
+  bc_loss_coeff: 0.1

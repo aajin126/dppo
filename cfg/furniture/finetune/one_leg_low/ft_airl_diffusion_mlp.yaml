@@ -1,0 +1,38 @@
+defaults:
+  - ft_ppo_diffusion_mlp
+  - _self_
+
+_target_: agent.finetune.train_airl_diffusion_agent.TrainAIRLDiffusionAgent
+name: ${env_name}_airl_diffusion_mlp
+logdir: ${oc.env:DPPO_LOG_DIR}/furniture-airl/${name}/${now:%Y-%m-%d}_${now:%H-%M-%S}_${seed}
+
+env:
+  n_envs: 4
+
+airl:
+  expert_dataset_path: ${oc.env:DPPO_DATA_DIR}/furniture/one_leg_low/train.npz
+  validate_only: false
+  reward_checkpoint: null
+  batch_size: 16
+  # Small, validated-state pilot batch. Increase only with fresh qualification.
+  density_states_per_source: 2
+  discriminator_updates: 4
+  density:
+    training_draws: 8192
+    development_draws: 4096
+    validation_draws: 8192
+    fit_steps: 5000
+    hidden_features: 512
+    mixtures: 16
+    max_pooled_pit_ks: 0.04
+    max_conditional_pit_ks: 0.20
+    max_pit_correlation: 0.10
+    max_overfit_gap_nats: 2.0
+    max_query_logp_rmse_nats: 1.0
+    max_query_logp_p95_nats: 2.0
+
+train:
+  n_train_itr: 20
+  n_critic_warmup_itr: 3
+  batch_size: 256
+  save_model_freq: 1
